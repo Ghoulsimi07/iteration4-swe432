@@ -4,7 +4,7 @@ addEventListener("DOMContentLoaded",(Event) => {
 
 function updatePreferences() {
     let p4 = document.getElementById('Playlist4');
-    for(var child=p4.firstChild; child!==null; child=child.nextSibling) {
+    /*for(var child=p4.firstChild; child!==null; child=child.nextSibling) {
         console.log('1');
         if (child.nodeName=='P') {
             console.log('A');
@@ -59,7 +59,7 @@ function updatePreferences() {
             console.log('B');
             child.setAttribute('alt',radioLanguage.language);
         }
-    }
+    }*/
 
 
     window.open ('/listener_preferences_edit','_self',false)

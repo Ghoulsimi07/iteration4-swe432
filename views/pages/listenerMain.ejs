@@ -22,54 +22,31 @@
                 <section id="glance">
                     <h2 id="GlanceTitle">Glance</h2>
                     <section class="GlanceBox">
-                        <section  class = "GlanceSection" id="Glance1">
-                            <p class="SongHeader" id="Song1">Song1</p>
-                            <section class="Metadata">
-                                <section class="SongMetadataLeft">
-                                    <img class='ImageMetadata' src="../../assets/images/music.jpg">
-                                </section>
-                                
-                                <section class="SongMetadataRight">
-                                    <p>Artist: Song1's Artist</p>
-                                    <p>Album: Song1's Album</p>
-                                </section>
-                            </section>
-                        </section>
-
-                            <section class = "GlanceSection" id="Glance2">
-                                <p class="SongHeader" id="Song2">Song2</p>
+                        
+                        <% songs.forEach(function(songs) {
+                             %>
+                            <section  class = "GlanceSection" id="Glance1">
+                                <p class="SongHeader" id="Song1"><%= songs.song %></p>
                                 <section class="Metadata">
                                     <section class="SongMetadataLeft">
                                         <img class='ImageMetadata' src="../../assets/images/music.jpg">
                                     </section>
                                     
                                     <section class="SongMetadataRight">
-                                        <p>Artist: Song2's Artist</p>
-                                        <p>Album: Song2's Album</p>
+                                        <p>Artist: <%= songs.artist %></p>
+                                        <p>Album: <%= songs.album %></p>
                                     </section>
                                 </section>
                             </section>
-
-                            <section class = "GlanceSection" id="Glance3">
-                                <p class="SongHeader" id="Song3">Song3</p>
-                                <section class="Metadata">
-                                    <section class="SongMetadataLeft">
-                                        <img class='ImageMetadata' src="../../assets/images/music.jpg">
-                                    </section>
-                                    
-                                    <section class="SongMetadataRight">
-                                        <p>Artist: Song3's Artist</p>
-                                        <p>Album: Song3's Album</p>
-                                    </section>
-                                </section>
-                            </section>
-                        </section>
+                        <% }); %>
                     </section>
                 </section>
 
                 <section id="player">
                     <div class="PlayerTitleMetadata">
-                        <h2 id="PlayerTitle">Album - Artist - Song</h2>
+                        <% currentPlaying.forEach(function(currentPlaying) {%>
+                            <h2 id="PlayerTitle"><%= currentPlaying.album %> <%= currentPlaying.song %></h2>
+                        <% }); %>
                     </div>
 
                     <div id="media">
@@ -124,30 +101,9 @@
                 <section id="lyrics">
                     <h2>Lyrics</h2>
                     <div class="lyricStanza">
-                        <p>
-                            Lyric Stanza 1
-                        </p>
-                        <p>
-                            Lyric Stanza 2
-                        </p>
-                        <p>
-                            Lyric Stanza 3
-                        </p>
-                        <p>
-                            Lyric Stanza 4
-                        </p>
-                        <p>
-                            Lyric Stanza 5
-                        </p>
-                        <p>
-                            Lyric Stanza 6
-                        </p>
-                        <p>
-                            Lyric Stanza 7
-                        </p>
-                        <p>
-                            Lyric Stanza 8
-                        </p>
+                        <% lyrics.forEach(function(lyrics) { %>
+                            <p><%= lyrics.lyric %></p>
+                       <% }); %>
                     </div>
                 </section>
 
@@ -155,16 +111,19 @@
             <!-- Timeline -->
             <div class="timeline">
                 <!-- E1 -->
+                <% pastPlaylist1.forEach(function(pastPlaylist1) { %>
                 <div class="event">
                     <!-- <span class="eventDetails">
                         <img src="assets/icons/more.svg" alt="details icon" class = "detailsIcon">
                     </span> -->
                     <span class="eventHeader">
                         <span id="djName">
-                            DJ Name
+                            <%= pastPlaylist1.dj%>
                         </span>
                         <span id="programContent">
-                            Genre | Genre | Genre
+                            <%= pastPlaylist1.genre1%>
+                            <%= pastPlaylist1.genre2%>
+                            <%= pastPlaylist1.genre3%>
                         </span>
                     </span>
                     <!-- Buttons -->
@@ -180,7 +139,7 @@
                                     </span>
                                     <!-- like counter -->
                                     <span id = "likeCounter">
-                                        00
+                                        <%= pastPlaylist1.like%>
                                     </span>
                                 </span>
                             </label>
@@ -191,22 +150,25 @@
                             produced by
                         </span>
                         <span id="producerName">
-                            producer name
+                            <%= pastPlaylist1.producer %>
                         </span>
                     </span>
                 </div>
+                <% }); %>
                 <!-- E2 -->
-
+                <% pastPlaylist2.forEach(function(pastPlaylist2) { %>
                 <div class="event">
                     <!-- <span class="eventDetails">
                         <img src="assets/icons/more.svg" alt="details icon" class = "detailsIcon">
                     </span> -->
                     <span class="eventHeader">
                         <span id="djName">
-                            DJ Name
+                            <%= pastPlaylist2.dj%>
                         </span>
                         <span id="programContent">
-                            Genre | Genre | Genre
+                            <%= pastPlaylist2.genre1%>
+                            <%= pastPlaylist2.genre2%>
+                            <%= pastPlaylist2.genre3%>
                         </span>
                     </span>
 
@@ -221,7 +183,7 @@
                                     </span>
                                     <!-- like counter -->
                                     <span id = "likeCounter">
-                                        00
+                                        <%= pastPlaylist2.like %>
                                     </span>
                                 </span>
                             </label>
@@ -233,11 +195,13 @@
                             Produced By
                         </span>
                         <span id="producerName">
-                            Producer Name
+                            <%= pastPlaylist2.producer %>
                         </span>
                     </span>
                 </div>
+                <% }); %>
                 <!-- E3 -->
+                <% pastPlaylist3.forEach(function(pastPlaylist3) { %>
                 <div class="nextEvent">
                     <div id="nextDJname">
                         <p>Currently Playing</p>
@@ -261,7 +225,7 @@
                                             </span>
                                             <!-- like counter -->
                                             <span id = "likeCounter">
-                                                00
+                                                <%= pastPlaylist3.like %>
                                             </span>
                                         </span>
                                     </label>
@@ -272,10 +236,12 @@
                         <div class="upNextMetadataAll">
                             <div class="eventHeader">
                                 <div id="djName">
-                                    DJ Name
+                                    <%= pastPlaylist3.dj%>
                                 </div>
                                 <div id="programContent">
-                                    Genre | Genre | Genre
+                                    <%= pastPlaylist3.genre1%>
+                                    <%= pastPlaylist3.genre2%>
+                                    <%= pastPlaylist3.genre3%>
                                 </div>
                             </div>
         
@@ -284,7 +250,7 @@
                                     Produced By
                                 </div>
                                 <div id="producerName">
-                                    Producer Name
+                                    <%= pastPlaylist3.producer %>
                                 </div>
                             </div>
 
@@ -292,17 +258,21 @@
                         </div>
                     </div>
                 </div>
+                <% }); %>
                 
+                <% pastPlaylist4.forEach(function(pastPlaylist4) { %>
                 <div class="event">
                     <!-- <span class="eventDetails">
                         <img src="assets/icons/more.svg" alt="details icon" class = "detailsIcon">
                     </span> -->
                     <span class="eventHeader">
                         <span id="djName">
-                            DJ Name
+                            <%= pastPlaylist4.dj%>
                         </span>
                         <span id="programContent">
-                            Genre | Genre | Genre
+                            <%= pastPlaylist4.genre1%>
+                            <%= pastPlaylist4.genre2%>
+                            <%= pastPlaylist4.genre3%>
                         </span>
                     </span>
 
@@ -317,7 +287,7 @@
                                     </span>
                                     <!-- like counter -->
                                     <span id = "likeCounter">
-                                        00
+                                        <%= pastPlaylist4.like %>
                                     </span>
                                 </span>
                             </label>
@@ -329,21 +299,25 @@
                             Produced By
                         </span>
                         <span id="producerName">
-                            Producer Name
+                            <%= pastPlaylist4.producer %>
                         </span>
                     </span>
                 </div>
+                <% }); %>
                 
+                <% pastPlaylist5.forEach(function(pastPlaylist5) { %>
                 <div class="event">
                     <!-- <span class="eventDetails">
                         <img src="assets/icons/more.svg" alt="details icon" class = "detailsIcon">
                     </span> -->
                     <span class="eventHeader">
                         <span id="djName">
-                            DJ Name
+                            <%= pastPlaylist5.dj%>
                         </span>
                         <span id="programContent">
-                            Genre | Genre | Genre
+                            <%= pastPlaylist5.genre1%>
+                            <%= pastPlaylist5.genre2%>
+                            <%= pastPlaylist5.genre3%>
                         </span>
                     </span>
 
@@ -358,7 +332,7 @@
                                     </span>
                                     <!-- like counter -->
                                     <span id = "likeCounter">
-                                        00
+                                        <%= pastPlaylist5.like %>
                                     </span>
                                 </span>
                             </label>
@@ -370,10 +344,11 @@
                             produced by
                         </span>
                         <span id="producerName">
-                            producer name
+                            <%= pastPlaylist5.producer %>
                         </span>
                     </span>
                 </div>
+                <% }); %>
             </div>
         </main>
 

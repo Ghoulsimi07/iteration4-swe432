@@ -1,4 +1,4 @@
-function validateForm() {
+ function validateForm() {
     let dj1 = document.forms['PreferenceEditForm']['dj1checkbox'].checked;
     let dj2 = document.forms['PreferenceEditForm']['dj2checkbox'].checked;
     let dj3 = document.forms['PreferenceEditForm']['dj3checkbox'].checked;
@@ -39,7 +39,7 @@ function validateForm() {
         return false
     }
     return true;
-}
+} 
 
 function submitForm() {
     if (validateForm()) {

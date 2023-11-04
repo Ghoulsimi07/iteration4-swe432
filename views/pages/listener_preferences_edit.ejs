@@ -20,104 +20,56 @@
                     <div class="FormUpdatePreference">
                         <button  class='DropDownButton' id="DJs">Choose Which DJs You Want to Get Recommended:</button>
                         <div class = 'DropDownContent' id="DJs">
-                            <div>
-                                <input class = 'checkbox' type='checkbox' id="dj1checkbox" name="dj1" value="dj1">
-                                    DJ 1
-                                </input>
-                            </div>
-                            <div>
-                                <input class = 'checkbox' type='checkbox' id="dj2checkbox" name="dj2" value="dj2">
-                                    DJ 2
-                                </input>
-                            </div>
-                            <div>
-                                <input class = 'checkbox' type='checkbox' id="dj3checkbox" name="dj3" value="dj3">
-                                    DJ 3
-                                </input>
-                            </div>
-                            <div>
-                                <input class = 'checkbox' type='checkbox' id="dj4checkbox" name="dj4" value="dj4">
-                                    DJ 4
-                                </input>
-                            </div>
+                            <% djs.forEach(function(djs) { %>
+                                <div>
+                                    <input class = 'checkbox' type='checkbox' name="dj1" value="dj1" id="<%=djs.id%>"
+                                    <%= djs.checked ? "checked " : " " %>>
+                                        <%= djs.djName %>
+                                    </input>
+                                </div>
+                            <% }); %>
                         </div>
                     </div>
                     
                     <div class="FormUpdatePreference">
                         <button  class='DropDownButton' id="Playlist">Choose Which Playlists You Want to Get Recommended:</button>
                         <div class = 'DropDownContent' id="Playlists">
+                            <% playlist.forEach(function(playlist) { %>
                                 <div>
-                                    <input class = 'checkbox' type='checkbox' id="playlist1checkbox" name="playlist1" value="playlist1">
-                                        Playlist 1
+                                    <input class = 'checkbox' type='checkbox' name="dj1" value="dj1" id="<%=playlist.id%>"
+                                    <%= playlist.checked ? "checked " : " " %>>
+                                        <%= playlist.playlistName %>
                                     </input>
                                 </div>
-                                <div>
-                                    <input class = 'checkbox' type='checkbox' id="playlist2checkbox" name="playlist2" value="playlist2">
-                                        Playlist 2
-                                    </input>
-                                </div>
-                                <div>
-                                    <input class = 'checkbox' type='checkbox' id="playlist3checkbox" name="playlist3" value="playlist3">
-                                        Playlist 3
-                                    </input>
-                                </div>
-                                <div>
-                                    <input class = 'checkbox' type='checkbox' id="playlist4checkbox" name="playlist4" value="playlist4">
-                                        Playlist 4
-                                    </input>
-                                </div>
+                            <% }); %>
                         </div>
                     </div>
 
                     <div class="FormUpdatePreference">
                         <button  class='DropDownButton' id="Genre">Choose Which Genres You Want to Get Recommended:</button>
                         <div class = 'DropDownContent' id="Genre">
-                            <div>
-                                <input class = 'checkbox' type='checkbox' id="genre1checkbox" name="genre1" value="genre1">
-                                    Genre 1
-                                </input>
-                            </div>
-                            <div>
-                                <input class = 'checkbox' type='checkbox' id="genre2checkbox" name="genre2" value="genre2">
-                                    Genre 2
-                                </input>
-                            </div>
-                            <div>
-                                <input class = 'checkbox' type='checkbox' id="genre3checkbox" name="genre3" value="genre3">
-                                    Genre 3
-                                </input>
-                            </div>
-                            <div>
-                                <input class = 'checkbox' type='checkbox' id="genre4checkbox" name="genre4" value="genre4">
-                                    Genre 4
-                                </input>
-                            </div>
+                            <% genre.forEach(function(genre) { %>
+                                <div>
+                                    <input class = 'checkbox' type='checkbox' name="dj1" value="dj1" id="<%=genre.id%>"
+                                    <%= genre.checked ? "checked " : " " %>>
+                                        <%= genre.genreName %>
+                                    </input>
+                                </div>
+                            <% }); %>
                         </div>
                     </div>
 
                     <div class="FormUpdatePreference">
                         <button class='DropDownButton' id="LanguageButton">Choose Language You Want to Get Recommended:</button>
                         <div class = 'DropDownContent' id="Language">
-                            <div>
-                                <input class = 'checkbox' type='checkbox' id="language1checkbox" name="language1" value="language1">
-                                    Language 1
-                                </input>
-                            </div>
-                            <div>
-                                <input class = 'checkbox' type='checkbox' id="language2checkbox" name="language2" value="language2">
-                                    Language 2
-                                </input>
-                            </div>
-                            <div>
-                                <input class = 'checkbox' type='checkbox' id="language3checkbox" name="language3" value="language3">
-                                    Language 3
-                                </input>
-                            </div>
-                            <div>
-                                <input class = 'checkbox' type='checkbox' id="language4checkbox" name="language4" value="language4">
-                                    Language 4
-                                </input>
-                            </div>
+                            <% language.forEach(function(language) { %>
+                                <div>
+                                    <input class = 'checkbox' type='checkbox' name="dj1" value="dj1" id="<%=language.id%>"
+                                    <%= language.checked ? "checked " : " " %>>
+                                        <%= language.languageName %>
+                                    </input>
+                                </div>
+                            <% }); %>
                         </div>
                     </div>
                     
