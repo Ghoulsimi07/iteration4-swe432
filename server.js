@@ -8,6 +8,8 @@ app.set('view engine', 'ejs');
 // use res.render to load up an ejs view file
 app.use("/css", express.static(__dirname + "/css"));
 app.use("/assets", express.static(__dirname + "/assets"));
+app.use("/javascript", express.static(__dirname + "/javascript"));
+
 
 // index page 
 app.get('/', function(req, res) {
@@ -18,7 +20,7 @@ app.get('/', function(req, res) {
     ];
     var tagline = "No programming concept is complete without a cute animal mascot.";
 
-    res.render('pages/index', {
+    res.render('pages/listenerMain.ejs', {
         mascots: mascots,
         tagline: tagline
     });
@@ -29,12 +31,55 @@ app.get('/listener_about', function(req, res) {
     res.render('pages/listener_about.ejs');
 });
 
+// main page
 app.get('/listenerMain', function(req, res) {
     res.render('pages/listenerMain.ejs');
 });
 
-app.use("/cssListener", express.static(__dirname + "pages/css"));
-app.use("/jsListener", express.static(__dirname + "pages/javascript"));
+//explore page
+app.get('/listener_explore', function(req, res) {
+    res.render('pages/listener_explore.ejs');
+});
+
+//favorite pages
+app.get('/listener_favorites', function(req, res) {
+    res.render('pages/listener_favorites.ejs');
+});
+
+// help page
+app.get('/listener_help', function(req, res) {
+    res.render('pages/listener_help.ejs');
+});
+
+//library
+app.get('/listener_library', function(req, res) {
+    res.render('pages/listener_library.ejs');
+});
+
+//preferences
+app.get('/listener_preferences', function(req, res) {
+    res.render('pages/listener_preferences.ejs');
+});
+
+//preferences_edit
+app.get('/listener_preferences_edit', function(req, res) {
+    res.render('pages/listener_preferences_edit.ejs');
+});
+
+//profile
+app.get('/listener_profile', function(req, res) {
+    res.render('pages/listener_profile.ejs');
+});
+
+//timelines
+app.get('/listener_timelines', function(req, res) {
+    res.render('pages/listener_timelines.ejs');
+});
+
+//timelines
+app.get('/listener_news', function(req, res) {
+    res.render('pages/listener_news.ejs');
+});
 
 app.listen(8080);
 console.log('8080 is the magic port');

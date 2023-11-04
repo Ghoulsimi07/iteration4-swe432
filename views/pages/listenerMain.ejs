@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+     
+      <head>
+        <%- include('../partials/head'); %>
+        <link rel="stylesheet" href="/css/listener_main.css">>
+      </head>
+     
+      <body>
+         <header>
+            <%- include('../partials/header'); %>
+        </header>
+        
+        <main>
+            <!-- Search Bar -->
+            <div id="search">
+                <input type="text" id ='searchFeature'>
+                <button id="SearchButton">Search</button>
+            </div>
+            <!-- Widget -->
+            <div class = "widget">
+                
+                <section id="glance">
+                    <h2 id="GlanceTitle">Glance</h2>
+                    <section class="GlanceBox">
+                        <section  class = "GlanceSection" id="Glance1">
+                            <p class="SongHeader" id="Song1">Song1</p>
+                            <section class="Metadata">
+                                <section class="SongMetadataLeft">
+                                    <img class='ImageMetadata' src="../../assets/images/music.jpg">
+                                </section>
+                                
+                                <section class="SongMetadataRight">
+                                    <p>Artist: Song1's Artist</p>
+                                    <p>Album: Song1's Album</p>
+                                </section>
+                            </section>
+                        </section>
+
+                            <section class = "GlanceSection" id="Glance2">
+                                <p class="SongHeader" id="Song2">Song2</p>
+                                <section class="Metadata">
+                                    <section class="SongMetadataLeft">
+                                        <img class='ImageMetadata' src="../../assets/images/music.jpg">
+                                    </section>
+                                    
+                                    <section class="SongMetadataRight">
+                                        <p>Artist: Song2's Artist</p>
+                                        <p>Album: Song2's Album</p>
+                                    </section>
+                                </section>
+                            </section>
+
+                            <section class = "GlanceSection" id="Glance3">
+                                <p class="SongHeader" id="Song3">Song3</p>
+                                <section class="Metadata">
+                                    <section class="SongMetadataLeft">
+                                        <img class='ImageMetadata' src="../../assets/images/music.jpg">
+                                    </section>
+                                    
+                                    <section class="SongMetadataRight">
+                                        <p>Artist: Song3's Artist</p>
+                                        <p>Album: Song3's Album</p>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+
+                <section id="player">
+                    <div class="PlayerTitleMetadata">
+                        <h2 id="PlayerTitle">Album - Artist - Song</h2>
+                    </div>
+
+                    <div id="media">
+                        <img src="../../assets/images/albumArt.jpg" id="AlbumArt">
+                    </div>
+
+                    <div id="bottomPane">
+                        <div id="controlPanel">
+                            <div id = "alternateButton">
+                                <button id="shareSession">
+                                    <img src="../../assets/icons/share.svg" alt="share icon" id = "share">
+                                </button>
+                            </div>
+
+                            <div id="playback">
+                                <div class="volumeControl">
+                                    <!-- TODO: icon and button here -->
+                                    <button id = "volumeDown">
+                                        <!-- TODO: icon here --> 
+                                        <img src="../../assets/icons/volumedown.svg" alt="volume down icon" id = "volumeDownIcon">
+                                    </button>
+                                </div>
+                                
+                                <div class = "muteSound">
+                                    <input type="checkbox" id="muteSound">
+                                    <!---<label for="muteSound" id = "muteSoundLabel"> -->
+                                        <!-- TODO: icon here -->
+                                        <button id="muteSoundButton">
+                                            <img src="../../assets/icons/mute.svg" alt = "mute icon" id = "muteSoundIcon">
+                                        </button>
+                                    </label>
+                                </div>
+                                
+                                <div class="volumeControl">
+                                    <button id="volumeUp">
+                                        <!-- TODO: icon here -->
+                                        <img src="../../assets/icons/volumeup.svg" alt="volume up icon" id = "volumeUpIcon">
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div id="playlistToggle">
+                                <button id = "playlistToggleButton">
+                                    <!-- TODO: icon here -->
+                                    <img src="../../assets/icons/playlist.svg" alt="playlist icon" id = "playlistHideIcon">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="lyrics">
+                    <h2>Lyrics</h2>
+                    <div class="lyricStanza">
+                        <p>
+                            Lyric Stanza 1
+                        </p>
+                        <p>
+                            Lyric Stanza 2
+                        </p>
+                        <p>
+                            Lyric Stanza 3
+                        </p>
+                        <p>
+                            Lyric Stanza 4
+                        </p>
+                        <p>
+                            Lyric Stanza 5
+                        </p>
+                        <p>
+                            Lyric Stanza 6
+                        </p>
+                        <p>
+                            Lyric Stanza 7
+                        </p>
+                        <p>
+                            Lyric Stanza 8
+                        </p>
+                    </div>
+                </section>
+
+            </div>
+            <!-- Timeline -->
+            <div class="timeline">
+                <!-- E1 -->
+                <div class="event">
+                    <!-- <span class="eventDetails">
+                        <img src="assets/icons/more.svg" alt="details icon" class = "detailsIcon">
+                    </span> -->
+                    <span class="eventHeader">
+                        <span id="djName">
+                            DJ Name
+                        </span>
+                        <span id="programContent">
+                            Genre | Genre | Genre
+                        </span>
+                    </span>
+                    <!-- Buttons -->
+                    <!-- Can't like and unlike at the same time FIXME: use javascript -->
+                    <span class="eventButtons">
+                        <span id  = "likeButton">
+                            <input type="checkbox" id="like">
+                            <label for="like">
+                                <span id="likeInteraction">
+                                    <!-- like icon -->
+                                    <span id = "likeIconContainer">
+                                        <img src="../../assets/icons/black/like.svg" alt = "like icon" id = "likeIcon">
+                                    </span>
+                                    <!-- like counter -->
+                                    <span id = "likeCounter">
+                                        00
+                                    </span>
+                                </span>
+                            </label>
+                        </span>
+                    </span>
+                    <span class="eventFooter">
+                        <span class="top">
+                            produced by
+                        </span>
+                        <span id="producerName">
+                            producer name
+                        </span>
+                    </span>
+                </div>
+                <!-- E2 -->
+
+                <div class="event">
+                    <!-- <span class="eventDetails">
+                        <img src="assets/icons/more.svg" alt="details icon" class = "detailsIcon">
+                    </span> -->
+                    <span class="eventHeader">
+                        <span id="djName">
+                            DJ Name
+                        </span>
+                        <span id="programContent">
+                            Genre | Genre | Genre
+                        </span>
+                    </span>
+
+                    <span class="eventButtons">
+                        <span id  = "likeButton">
+                            <input type="checkbox" id="like">
+                            <label for="like">
+                                <span id="likeInteraction">
+                                    <!-- like icon -->
+                                    <span id = "likeIconContainer">
+                                        <img src="../../assets/icons/black/like.svg" alt = "like icon" id = "likeIcon">
+                                    </span>
+                                    <!-- like counter -->
+                                    <span id = "likeCounter">
+                                        00
+                                    </span>
+                                </span>
+                            </label>
+                        </span>
+                    </span>
+
+                    <span class="eventFooter">
+                        <span class="top">
+                            Produced By
+                        </span>
+                        <span id="producerName">
+                            Producer Name
+                        </span>
+                    </span>
+                </div>
+                <!-- E3 -->
+                <div class="nextEvent">
+                    <div id="nextDJname">
+                        <p>Currently Playing</p>
+                   </div>
+
+                    <div class="upNextHeader">
+                        <div>
+                            
+                            <div class="upNextHeaderImage">
+                                    <img src="../../assets/images/music.jpg" id="UpNextImage" width="75%" height="75%">
+                            </div>
+
+                            <span class="eventButtons">
+                                <span id  = "likeButton">
+                                    <input type="checkbox" id="like">
+                                    <label for="like">
+                                        <span id="likeInteraction">
+                                            <!-- like icon -->
+                                            <span id = "likeIconContainer">
+                                                <img src="../../assets/icons/black/like.svg" alt = "like icon" id = "likeIcon"  width="75%" height="75%">
+                                            </span>
+                                            <!-- like counter -->
+                                            <span id = "likeCounter">
+                                                00
+                                            </span>
+                                        </span>
+                                    </label>
+                                </span>
+                            </span>
+                        </div>
+                            
+                        <div class="upNextMetadataAll">
+                            <div class="eventHeader">
+                                <div id="djName">
+                                    DJ Name
+                                </div>
+                                <div id="programContent">
+                                    Genre | Genre | Genre
+                                </div>
+                            </div>
+        
+                            <div class="eventFooter">
+                                <div class="top">
+                                    Produced By
+                                </div>
+                                <div id="producerName">
+                                    Producer Name
+                                </div>
+                            </div>
+
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event">
+                    <!-- <span class="eventDetails">
+                        <img src="assets/icons/more.svg" alt="details icon" class = "detailsIcon">
+                    </span> -->
+                    <span class="eventHeader">
+                        <span id="djName">
+                            DJ Name
+                        </span>
+                        <span id="programContent">
+                            Genre | Genre | Genre
+                        </span>
+                    </span>
+
+                    <span class="eventButtons">
+                        <span id  = "likeButton">
+                            <input type="checkbox" id="like">
+                            <label for="like">
+                                <span id="likeInteraction">
+                                    <!-- like icon -->
+                                    <span id = "likeIconContainer">
+                                        <img src="../../assets/icons/black/like.svg" alt = "like icon" id = "likeIcon">
+                                    </span>
+                                    <!-- like counter -->
+                                    <span id = "likeCounter">
+                                        00
+                                    </span>
+                                </span>
+                            </label>
+                        </span>
+                    </span>
+
+                    <span class="eventFooter">
+                        <span class="top">
+                            Produced By
+                        </span>
+                        <span id="producerName">
+                            Producer Name
+                        </span>
+                    </span>
+                </div>
+                
+                <div class="event">
+                    <!-- <span class="eventDetails">
+                        <img src="assets/icons/more.svg" alt="details icon" class = "detailsIcon">
+                    </span> -->
+                    <span class="eventHeader">
+                        <span id="djName">
+                            DJ Name
+                        </span>
+                        <span id="programContent">
+                            Genre | Genre | Genre
+                        </span>
+                    </span>
+
+                    <span class="eventButtons">
+                        <span id  = "likeButton">
+                            <input type="checkbox" id="like">
+                            <label for="like">
+                                <span id="likeInteraction">
+                                    <!-- like icon -->
+                                    <span id = "likeIconContainer">
+                                        <img src="../../assets/icons/black/like.svg" alt = "like icon" id = "likeIcon">
+                                    </span>
+                                    <!-- like counter -->
+                                    <span id = "likeCounter">
+                                        00
+                                    </span>
+                                </span>
+                            </label>
+                        </span>
+                    </span>
+
+                    <span class="eventFooter">
+                        <span class="top">
+                            produced by
+                        </span>
+                        <span id="producerName">
+                            producer name
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+           <%- include('../partials/footer');%>
+        </footer>
+    </body>
+    <script src="/javascript/listener_main.js"></script>
+</html>

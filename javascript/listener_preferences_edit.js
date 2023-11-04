@@ -43,7 +43,7 @@ function validateForm() {
 
 function submitForm() {
     if (validateForm()) {
-        window.open ('listener_preferences.html','_self',false)
+        window.open ('/listener_preferences','_self',false)
     }
 }
 

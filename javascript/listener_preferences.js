@@ -62,7 +62,7 @@ function updatePreferences() {
     }
 
 
-    window.open ('listener_preferences_edit.html','_self',false)
+    window.open ('/listener_preferences_edit','_self',false)
 }
 
 
