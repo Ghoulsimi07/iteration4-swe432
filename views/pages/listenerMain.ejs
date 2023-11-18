@@ -23,15 +23,13 @@
                     <h2 id="GlanceTitle">Glance</h2>
                     <section class="GlanceBox">
                         
-                        <% songs.forEach(function(songs) {
-                             %>
+                        <% songs.forEach(function(songs) { %>
                             <section  class = "GlanceSection" id="Glance1">
                                 <p class="SongHeader" id="Song1"><%= songs.song %></p>
                                 <section class="Metadata">
                                     <section class="SongMetadataLeft">
                                         <img class='ImageMetadata' src="../../assets/images/music.jpg">
                                     </section>
-                                    
                                     <section class="SongMetadataRight">
                                         <p>Artist: <%= songs.artist %></p>
                                         <p>Album: <%= songs.album %></p>
@@ -138,7 +136,7 @@
                                         <img src="../../assets/icons/black/like.svg" alt = "like icon" id = "likeIcon">
                                     </span>
                                     <!-- like counter -->
-                                    <span id = "likeCounter">
+                                    <span id = "likeCounter" class="likeCounter1">
                                         <%= pastPlaylist1.like%>
                                     </span>
                                 </span>
@@ -182,7 +180,7 @@
                                         <img src="../../assets/icons/black/like.svg" alt = "like icon" id = "likeIcon">
                                     </span>
                                     <!-- like counter -->
-                                    <span id = "likeCounter">
+                                    <span id = "likeCounter" class="likeCounter2">
                                         <%= pastPlaylist2.like %>
                                     </span>
                                 </span>
@@ -224,7 +222,7 @@
                                                 <img src="../../assets/icons/black/like.svg" alt = "like icon" id = "likeIcon"  width="75%" height="75%">
                                             </span>
                                             <!-- like counter -->
-                                            <span id = "likeCounter">
+                                            <span id = "likeCounter" class="likeCounter3">
                                                 <%= pastPlaylist3.like %>
                                             </span>
                                         </span>
@@ -286,7 +284,7 @@
                                         <img src="../../assets/icons/black/like.svg" alt = "like icon" id = "likeIcon">
                                     </span>
                                     <!-- like counter -->
-                                    <span id = "likeCounter">
+                                    <span id = "likeCounter" class="likeCounter4">
                                         <%= pastPlaylist4.like %>
                                     </span>
                                 </span>
@@ -331,7 +329,7 @@
                                         <img src="../../assets/icons/black/like.svg" alt = "like icon" id = "likeIcon">
                                     </span>
                                     <!-- like counter -->
-                                    <span id = "likeCounter">
+                                    <span id = "likeCounter" class="likeCounter5">
                                         <%= pastPlaylist5.like %>
                                     </span>
                                 </span>

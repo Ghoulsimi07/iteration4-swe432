@@ -1,10 +1,414 @@
 // load the things we need
 var express = require('express');
 var app = express();
-
+const session = require('express-session');
 // set the view engine to ejs
+const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo');
+
+// configure session middleware
+app.use(session({
+    secret: 'MySecretCode',
+    saveUninitialized: true,
+    resave: true,
+    store: MongoStore.create({
+    mongoUrl: 'mongodb://127.0.0.1:27017/test',
+    autoRemove: 'interval',
+    autoRemoveInterval: 10 // In minutes. Default
+  })
+}));
+
 app.set('view engine', 'ejs');
 
+main().catch(err => console.log(err));
+
+async function main() {
+  await mongoose.connect('mongodb://127.0.0.1:27017/test');
+  console.log("HI");
+
+  const songSchema = new mongoose.Schema ({
+    songID: Number,
+    songName: String,
+    songRating: Number,
+    mainArtist:String,
+    featuredArtists:[String],
+    listProducers:[String],
+    releaseYear:Date,
+    album:String,
+    genre:[String]
+  });
+
+  const Song = mongoose.model('Song',songSchema);
+
+  const song1 = new Song({
+    songID: 1,
+    songName: 'White Dress',
+    songRating: 7,
+    mainArtist: 'Lana Del Ray',
+    featuredArtists:[],
+    listProducres:['Jack Antoff','Daisy Jones'],
+    releaseYear:2020,
+    album:'Chemtrails Over the Country Club',
+    genre:['indie','alt-rock','blues']
+  });
+
+  const song2 = new Song({
+    songID: 2,
+    songName: 'Blood Sweat and Tears',
+    songRating: 18,
+    mainArtist: 'BTS',
+    featuredArtists:[],
+    listProducres:['Big Hit'],
+    releaseYear:2018,
+    album:'Wings',
+    genre:['k-pop','pop']
+  });
+
+  const song3 = new Song({
+    songID: 3,
+    songName: 'Blinding Lights',
+    songRating: 32,
+    mainArtist: 'The Weeknd',
+    featuredArtists:['Ariana Grande'],
+    listProducres:['The Weeknd','Sofia Sofia'],
+    releaseYear:2023,
+    album:'Blinding Lights',
+    genre:['indie','rock','pop']
+  });
+
+
+  const song4 = new Song({
+    songID: 4,
+    songName: 'Dreaming Blues',
+    songRating: 4,
+    mainArtist: 'Bob Bob',
+    featuredArtists:['Charlie Day'],
+    listProducres:['Jake Hello','Patricia'],
+    releaseYear:1927,
+    album:'Country Roads',
+    genre:['classical','country','gospel']
+  });
+
+
+  const song5 = new Song({
+    songID: 5,
+    songName: 'Golden Hour',
+    songRating: 1,
+    mainArtist: 'HemmingWay',
+    featuredArtists:['Denison'],
+    listProducres:['Homebody'],
+    releaseYear:1992,
+    album:'The World is our Oyster',
+    genre:['latin','hip-hop','classical']
+  });
+
+
+  const song6 = new Song({
+    songID: 6,
+    songName: 'Super Gold',
+    songRating: 13,
+    mainArtist: 'HemmingWay',
+    featuredArtists:[],
+    listProducres:['Niall','Harry','Louis'],
+    releaseYear:1992,
+    album:'The World is our Oyster',
+    genre:['dubstep','rock','electronic']
+  });
+
+  await song1.save();
+  await song2.save();
+  await song3.save();
+  await song4.save();
+  await song5.save();
+  await song6.save();
+
+
+  const ProgramSchema = new mongoose.Schema({
+    programID: Number,
+    programName: String,
+    leadProducer:String,
+    assistantProducer:[String],
+    time:[Date],
+    playlistID:Number,
+    assignedDJ:String,
+    metrics:[Number] //likes first
+  });
+
+  const Program = mongoose.model('Program',ProgramSchema);
+
+  const program1 = new Program({
+    programID: 1,
+    programName: 'JazzyHands',
+    leadProducer:'Jazz',
+    assistantProducer:['Jake',"Jeff","Jessie"],
+    time:[new Date(2023, 11, 18, 23, 11,30)],
+    assignedDJ:"Happy Feet",
+    playlistID:1,
+    metrics:[20]
+  });
+
+  await program1.save();
+  const program2 = new Program({
+    programID: 2,
+    programName: 'Hi',
+    leadProducer:'Mondie',
+    assistantProducer:['Cool'],
+    time:[new Date(2023, 11, 18, 11, 1,40)],
+    assignedDJ:"Sunshine",
+    playlistID:2,
+    metrics:[10]
+  });
+  await program2.save();
+
+  const program3 = new Program({
+    programID: 3,
+    programName: 'Treble',
+    leadProducer:'Tira',
+    assistantProducer:['Dwight'],
+    time:[new Date(2023, 11, 19, 7, 5,28)],
+    assignedDJ:"Misery",
+    playlistID:3,
+    metrics:[180]
+  });
+  await program3.save();
+
+  const program4 = new Program({
+    programID: 4,
+    programName: 'International Beats',
+    leadProducer:'Loki',
+    assistantProducer:['Sylvie','Mobius'],
+    time:[new Date(2023, 11, 20, 2, 5, 18)],
+    assignedDJ:"TVA",
+    playlistID:4,
+    metrics:[18]
+  });
+  await program4.save();
+
+  const program5 = new Program({
+    programID: 5,
+    programName: 'Realtor Rizz',
+    leadProducer:'Stacy',
+    assistantProducer:['Noli','Polly'],
+    time:[new Date(2023, 11, 17, 4, 20,40)],
+    playlistID:5,
+    assignedDJ:"20Vision",
+    playlistID:5,
+    metrics:[1]
+  });
+
+  await program5.save();
+
+  const ProducerSchema = new mongoose.Schema({
+    userID:Number,
+    username:String,
+    password:String,
+    avatarID:Number,
+    playlists:[Number],
+    programs:[Number],
+    ongoingChat:[Number]
+  });
+
+  const Producer = mongoose.model('Producer',ProducerSchema);
+
+  const producer1 = new Producer({
+    userID:1,
+    username:'prod1',
+    password:'prod1P',
+    avatarID:123,
+    playlists:[1],
+    programs:[1],
+    ongoingChat:[1]
+  });
+
+  const producer2 = new Producer({
+    userID:2,
+    username:'prod2',
+    password:'prod2P',
+    avatarID:123,
+    playlists:[2],
+    programs:[2],
+    ongoingChat:[2]
+  });
+
+  const producer3 = new Producer({
+    userID:3,
+    username:'prod3',
+    password:'prod3P',
+    avatarID:123,
+    playlists:[3],
+    programs:[3],
+    ongoingChat:[3]
+  });
+
+  const producer4 = new Producer({
+    userID:4,
+    username:'prod4',
+    password:'prod4P',
+    avatarID:123,
+    playlists:[4],
+    programs:[4],
+    ongoingChat:[4]
+  });
+  
+  const producer5 = new Producer({
+    userID:5,
+    username:'prod5',
+    password:'prod5P',
+    avatarID:123,
+    playlists:[5],
+    programs:[5],
+    ongoingChat:[5]
+  });
+
+  await producer1.save();
+  await producer2.save();
+  await producer3.save();
+  await producer4.save();
+  await producer5.save();
+
+  const DJSchema = new mongoose.Schema({
+    userID:Number,
+    username:String,
+    password:String,
+    avatarID:Number,
+    playlists:[Number],
+    programs:[Number],
+    ongoingChat:[Number],
+  });
+
+  const DJ = mongoose.model('DJ',DJSchema);
+
+  const DJ1 = new DJ({
+    userID:6,
+    username:'DJ1',
+    password:'DJ1P',
+    avatarID:123,
+    playlists:[1],
+    programs:[1],
+    ongoingChat:[1],
+  });
+
+  const DJ2 = new DJ({
+    userID:7,
+    username:'DJ2',
+    password:'DJ2P',
+    avatarID:123,
+    playlists:[2],
+    programs:[2],
+    ongoingChat:[2],
+  });
+
+  const DJ3 = new DJ({
+    userID:8,
+    username:'DJ3',
+    password:'DJ3P',
+    avatarID:123,
+    playlists:[3],
+    programs:[3],
+    ongoingChat:[3],
+  });
+
+  const DJ4 = new DJ({
+    userID:9,
+    username:'DJ4',
+    password:'DJ4P',
+    avatarID:123,
+    playlists:[4],
+    programs:[4],
+    ongoingChat:[4],
+  });
+
+  const DJ5 = new DJ({
+    userID:10,
+    username:'DJ5',
+    password:'DJ5P',
+    avatarID:123,
+    playlists:[5],
+    programs:[5],
+    ongoingChat:[5],
+  });
+
+  await DJ1.save();
+  await DJ2.save();
+  await DJ3.save();
+  await DJ4.save();
+  await DJ5.save();
+
+  const SongAlbumSchema = new mongoose.Schema({
+    albumID:Number,
+    songs:[Number],
+    artist:[String],
+    description:String,
+    releaseYear:Date,
+    genre:[Number]
+  });
+
+  const SongAlbum = mongoose.model('SongAlbum',SongAlbumSchema);
+
+  const SongAlbum1 = new SongAlbum({
+    albumID:1,
+    songs:[5,6],
+    artist:["Hemmingway"],
+    description:'The coolest song ever',
+    releaseYear:1992,
+    genre:['dubstep','rock','electronic','latin','hip-hop','classical']
+  });
+
+  const SongAlbum2 = new SongAlbum({
+    albumID:2,
+    songs:[1],
+    artist:["Hemmingway"],
+    description:'The coolest song ever',
+    releaseYear:2020,
+    genre:['dubstep','rock','electronic','latin','hip-hop','classical']
+  });
+
+  const SongAlbum3 = new SongAlbum({
+    albumID:3,
+    songs:[2],
+    artist:["Hemmingway"],
+    description:'The coolest song ever',
+    releaseYear:2018,
+    genre:['dubstep','rock','electronic','latin','hip-hop','classical']
+  });
+
+  const SongAlbum4 = new SongAlbum({
+    albumID:4,
+    songs:[3],
+    artist:["Hemmingway"],
+    description:'The coolest song ever',
+    releaseYear:2023,
+    genre:['dubstep','rock','electronic','latin','hip-hop','classical']
+  });
+
+  const SongAlbum5 = new SongAlbum({
+    albumID:5,
+    songs:[4],
+    artist:["Hemmingway"],
+    description:'The coolest song ever',
+    releaseYear:1927,
+    genre:['dubstep','rock','electronic','latin','hip-hop','classical']
+  });
+
+  const SongGenreSchema = new mongoose.Schema({
+    genreID:Number,
+    songs:[Number],
+    description:String
+  });
+
+  const SongGenre = mongoose.model('SongGenre',SongGenreSchema);
+
+  const PlaylistSchema = new mongoose.Schema({
+    playlistID:Number,
+    name:String,
+    songs:[Number],
+    programs:[Number]
+  });
+
+  const Playlist = mongoose.model('Playlist',PlaylistSchema);
+
+  const Lyric = mongoose.model('Chat',LyricSchema);
+}
 
 // use res.render to load up an ejs view file
 app.use("/css", express.static(__dirname + "/css"));

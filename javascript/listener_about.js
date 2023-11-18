@@ -28,6 +28,12 @@ function validateForm() {
             return false;
         }
     }
+
+    for (char in y) {
+        if (char == '') {
+            console.log('possible space')
+        }
+    }
     return true;
 }
 document.getElementById('message').style.color='black';

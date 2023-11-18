@@ -5,6 +5,11 @@ document.getElementById('Like').addEventListener('click', function() {
     like();
 });
 
+document.getElementsByClassName('likeCounter5').addEventListener('click',function() {
+    likeCounter5(); 
+});
+
+
 function dislike() {
     document.getElementById('Like').setAttribute('style','background-color:grey');
     document.getElementById('Dislike').setAttribute('style','background-color:blue')
