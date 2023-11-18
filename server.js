@@ -8,7 +8,7 @@ const MongoStore = require('connect-mongo');
 
 // configure session middleware
 app.use(session({
-    userID:11,
+    secret:'MySecretCode',
     saveUninitialized: true,
     resave: true,
     store: MongoStore.create({
@@ -17,6 +17,7 @@ app.use(session({
     autoRemoveInterval: 10 // In minutes. Default
   })
 }));
+
 
 app.set('view engine', 'ejs');
 
@@ -346,7 +347,7 @@ async function main() {
     artist:[String],
     description:String,
     releaseYear:Date,
-    genre:[Number]
+    genre:[String]
   });
 
   const SongAlbum = mongoose.model('SongAlbum',SongAlbumSchema);
@@ -626,7 +627,7 @@ async function main() {
     await Lyric5.save();
     await Lyric6.save();
 
-    const LangaugeSchema = new mongoose.Schema({
+    const LanguageSchema = new mongoose.Schema({
         languageID:Number,
         language:String
     });
@@ -707,39 +708,39 @@ async function main() {
         password:'listener1P',
         location:'VA',
         djPreference:[
-            {djName:'A',id:"DJ_A",checked:True},
-            {djName:'B',id:"DJ_B",checked:False},
-            {djName:'C',id:"DJ_C",checked:False},
-            {djName:'D',id:"DJ_D",checked:True},
-            {djName:'E',id:"DJ_E",checked:True}
+            {djName:'A',id:"DJ_A",checked:true},
+            {djName:'B',id:"DJ_B",checked:false},
+            {djName:'C',id:"DJ_C",checked:false},
+            {djName:'D',id:"DJ_D",checked:true},
+            {djName:'E',id:"DJ_E",checked:true}
         ],
         languagePreference:[
-            {languageName:"English",id:"L1",checked:True},
-            {languageName:"French",id:"L2",checked:True},
-            {languageName:"Spanish",id:"L3",checked:True},
-            {languageName:"Mandarin",id:"L4",checked:True},
-            {languageName:"Korean",id:"L5",checked:False},
-            {languageName:"Arabic",id:"L6",checked:False},
-            {languageName:"Tamil",id:"L7",checked:False},
-            {languageName:"Telugu",id:"L8",checked:False}
+            {languageName:"English",id:"L1",checked:true},
+            {languageName:"French",id:"L2",checked:true},
+            {languageName:"Spanish",id:"L3",checked:true},
+            {languageName:"Mandarin",id:"L4",checked:true},
+            {languageName:"Korean",id:"L5",checked:false},
+            {languageName:"Arabic",id:"L6",checked:false},
+            {languageName:"Tamil",id:"L7",checked:false},
+            {languageName:"Telugu",id:"L8",checked:false}
         ],
         playlistPreference:[
-            {playlistName:"Jam Session",id:"P1",checked:False},
-            {playlistName:"Mixed Bag",id:"P2",checked:True},
-            {playlistName:"Tossed Plays",id:"P3",checked:False},
-            {playlistName:"Golden Age",id:"P4",checked:False}
+            {playlistName:"Jam Session",id:"P1",checked:false},
+            {playlistName:"Mixed Bag",id:"P2",checked:true},
+            {playlistName:"Tossed Plays",id:"P3",checked:false},
+            {playlistName:"Golden Age",id:"P4",checked:false}
         ],
         genrePreference:[   
-            {genreName:'indie',id:"g1",checked:True},
-            {genreName:"rock",id:"g2",checked:False},
-            {genreName:"pop",id:"g3",checked:True},
-            {genreName:"classical",id:"g4",checked:False},
-            {genreName:"country",id:"g5",checked:True},
-            {genreName:'gospel',id:"g6",checked:True},
-            {genreName:'dubstep',id:"g7",checked:False},
-            {genreName:'hip-hop',id:"g8",checked:False},
-            {genreName:"electronic",id:"g9",checked:True},
-            {genreName:"latin",id:"g10",checked:False}
+            {genreName:'indie',id:"g1",checked:true},
+            {genreName:"rock",id:"g2",checked:false},
+            {genreName:"pop",id:"g3",checked:true},
+            {genreName:"classical",id:"g4",checked:false},
+            {genreName:"country",id:"g5",checked:true},
+            {genreName:'gospel',id:"g6",checked:true},
+            {genreName:'dubstep',id:"g7",checked:false},
+            {genreName:'hip-hop',id:"g8",checked:false},
+            {genreName:"electronic",id:"g9",checked:true},
+            {genreName:"latin",id:"g10",checked:false}
         ]
     });
 
@@ -755,9 +756,9 @@ app.use("/css", express.static(__dirname + "/css"));
 app.use("/assets", express.static(__dirname + "/assets"));
 app.use("/javascript", express.static(__dirname + "/javascript"));
 
-
 // index page 
 app.get('/', function(req, res) {
+    req.session.userID=11;
     var mascots = [
         { name: 'Sammy', organization: "DigitalOcean", birth_year: 2012},
         { name: 'Tux', organization: "Linux", birth_year: 1996},
@@ -778,14 +779,14 @@ app.get('/listener_about', function(req, res) {
 
 // main page
 app.get('/listenerMain', function(req, res) {
-    
     var songs = [
-        {artist:'TSwift',album:'Midnight',song:'Lavendar Haze'},
-        {artist:'BTS',album:'Wings',song:'Blood, Sweat, and Tears'},
-        {artist:'The Weeknd',album:'Blinding Lights',song:'Blinding Lights'},
-        {artist:'Aurora',album:'Secret',song:'Runaway'}
+      {artist:'TSwift',album:'Midnight',song:'Lavendar Haze'},
+      {artist:'BTS',album:'Wings',song:'Blood, Sweat, and Tears'},
+      {artist:'The Weeknd',album:'Blinding Lights',song:'Blinding Lights'},
+      {artist:'Aurora',album:'Secret',song:'Runaway'}
     ];
 
+    
     var lyrics = [
         {lyric:'I\'m on the run with you, my sweet love'},
         {lyric:'There\'s nothing wrong contemplating God'},
@@ -808,7 +809,6 @@ app.get('/listenerMain', function(req, res) {
     var pastPlaylist4 = [{dj:'Jeremry',producer:'Jug',genre1:'Korean-Rock',genre2:"Latin-Mix",genre3:'Bollywood Hungama',like:15}];
     var pastPlaylist5 = [{dj:'Joe',producer:'Mama',genre1:'FrenchPop',genre2:"Lofi",genre3:'Movie Instrumentals',like:20}];
     
-
     res.render('pages/listenerMain.ejs', {
         songs:songs,
         currentPlaying:currentPlaying,
