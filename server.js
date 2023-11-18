@@ -8,7 +8,7 @@ const MongoStore = require('connect-mongo');
 
 // configure session middleware
 app.use(session({
-    secret: 'MySecretCode',
+    userID:11,
     saveUninitialized: true,
     resave: true,
     store: MongoStore.create({
@@ -268,6 +268,7 @@ async function main() {
 
   const DJSchema = new mongoose.Schema({
     userID:Number,
+    name:String,
     username:String,
     password:String,
     avatarID:Number,
@@ -280,6 +281,7 @@ async function main() {
 
   const DJ1 = new DJ({
     userID:6,
+    name:"A",
     username:'DJ1',
     password:'DJ1P',
     avatarID:123,
@@ -290,6 +292,7 @@ async function main() {
 
   const DJ2 = new DJ({
     userID:7,
+    name:"B",
     username:'DJ2',
     password:'DJ2P',
     avatarID:123,
@@ -300,6 +303,7 @@ async function main() {
 
   const DJ3 = new DJ({
     userID:8,
+    name:"C",
     username:'DJ3',
     password:'DJ3P',
     avatarID:123,
@@ -310,6 +314,7 @@ async function main() {
 
   const DJ4 = new DJ({
     userID:9,
+    name:"D",
     username:'DJ4',
     password:'DJ4P',
     avatarID:123,
@@ -320,6 +325,7 @@ async function main() {
 
   const DJ5 = new DJ({
     userID:10,
+    name:'E',
     username:'DJ5',
     password:'DJ5P',
     avatarID:123,
@@ -357,46 +363,181 @@ async function main() {
   const SongAlbum2 = new SongAlbum({
     albumID:2,
     songs:[1],
-    artist:["Hemmingway"],
-    description:'The coolest song ever',
+    artist:["Chemtrails Over the Country Club"],
+    description:'The pandemic idol',
     releaseYear:2020,
-    genre:['dubstep','rock','electronic','latin','hip-hop','classical']
+    genre:['indie','alt-rock','blues']
   });
 
   const SongAlbum3 = new SongAlbum({
     albumID:3,
     songs:[2],
-    artist:["Hemmingway"],
-    description:'The coolest song ever',
+    artist:["BTS"],
+    description:'The artistic rendezvous',
     releaseYear:2018,
-    genre:['dubstep','rock','electronic','latin','hip-hop','classical']
+    genre:['k-pop','pop']
   });
 
   const SongAlbum4 = new SongAlbum({
     albumID:4,
-    songs:[3],
-    artist:["Hemmingway"],
-    description:'The coolest song ever',
-    releaseYear:2023,
-    genre:['dubstep','rock','electronic','latin','hip-hop','classical']
+    songs:[4],
+    artist:["Bob Bob"],
+    description:'An old tune',
+    releaseYear:1927,
+    genre:['classical','country','gospel']
   });
 
   const SongAlbum5 = new SongAlbum({
     albumID:5,
-    songs:[4],
-    artist:["Hemmingway"],
-    description:'The coolest song ever',
-    releaseYear:1927,
-    genre:['dubstep','rock','electronic','latin','hip-hop','classical']
+    songs:[3],
+    artist:["The Weeknd"],
+    description:'A R&B Hit',
+    releaseYear:2023,
+    genre:['indie','rock','pop']
   });
 
-  const SongGenreSchema = new mongoose.Schema({
+  await SongAlbum1.save();
+  await SongAlbum2.save();
+  await SongAlbum3.save();
+  await SongAlbum4.save();
+  await SongAlbum5.save();
+
+
+  const GenreSchema = new mongoose.Schema({
     genreID:Number,
-    songs:[Number],
     description:String
   });
 
+  const Genre = mongoose.model('Genre',GenreSchema);
+  
+  const genre7 = new Genre({
+    genreID: 7, 
+    description:'dubstep'
+  });
+
+  const genre9 = new Genre({
+    genreID: 9, 
+    description:'electronic'
+  });
+
+  const genre10 = new Genre({
+    genreID: 10, 
+    description:'latin'
+  });
+
+  const genre8 = new Genre({
+    genreID: 8, 
+    description:'hip-hop'
+  });
+
+  const genre1 = new Genre({
+    genreID: 1, 
+    description:'indie'
+  });
+
+  const genre2 = new Genre({
+    genreID: 2, 
+    description:'rock'
+  });
+
+  const genre3 = new Genre({
+    genreID: 3, 
+    description:'pop'
+  });
+
+  const genre4 = new Genre({
+    genreID: 4, 
+    description:'classical'
+  });
+
+  const genre5 = new Genre({
+    genreID: 5, 
+    description:'country'
+  });
+
+  const genre6 = new Genre({
+    genreID: 6, 
+    description:'gospel'
+  });
+
+  await genre1.save();
+  await genre2.save();
+  await genre3.save();
+  await genre4.save();
+  await genre5.save();
+  await genre6.save();
+  await genre7.save();
+  await genre8.save();
+  await genre9.save();
+  await genre10.save();
+
+  const SongGenreSchema = new mongoose.Schema({
+    genreID:Number,
+    songs:[Number]
+  });
+
   const SongGenre = mongoose.model('SongGenre',SongGenreSchema);
+
+  const SongGenre1 = new Genre({
+    genreID: 1, 
+    songs: [1,3]
+  });
+
+  const SongGenre2 = new Genre({
+    genreID: 2, 
+    songs: [3,6]
+  });
+
+  const SongGenre3 = new Genre({
+    genreID: 3, 
+    songs: [2,3]
+  });
+
+  const SongGenre4 = new Genre({
+    genreID: 4, 
+    songs: [4,5]
+  });
+
+  const SongGenre5 = new Genre({
+    genreID: 5, 
+    songs: [4]
+  });
+
+  const SongGenre6 = new Genre({
+    genreID: 6, 
+    songs: [4]
+  });
+
+  const SongGenre7 = new Genre({
+    genreID: 7, 
+    songs: [5]
+  });
+
+  const SongGenre8 = new Genre({
+    genreID: 8, 
+    songs: [5]
+  });
+
+  const SongGenre9 = new Genre({
+    genreID: 9, 
+    songs: [5]
+  });
+
+  const SongGenre10 = new Genre({
+    genreID: 10, 
+    songs: [5]
+  });
+
+  await SongGenre1.save();
+  await SongGenre2.save();
+  await SongGenre3.save();
+  await SongGenre4.save();
+  await SongGenre5.save();
+  await SongGenre6.save();
+  await SongGenre7.save();
+  await SongGenre8.save();
+  await SongGenre9.save();
+  await SongGenre10.save();
 
   const PlaylistSchema = new mongoose.Schema({
     playlistID:Number,
@@ -407,8 +548,207 @@ async function main() {
 
   const Playlist = mongoose.model('Playlist',PlaylistSchema);
 
-  const Lyric = mongoose.model('Chat',LyricSchema);
+  const Playlist1 = new Playlist({
+    playlistID:1,
+    name:"Jam Session",
+    songs:[1,2,3,6],
+    programs:[1,2]
+  });
+
+  const Playlist2 = new Playlist({
+    playlistID:2,
+    name:"Mixed Bag",
+    songs:[4,2,6,1],
+    programs:[2,3]
+  });
+
+  const Playlist3 = new Playlist({
+    playlistID:3,
+    name:'Tossed Plays',
+    songs:[5,3,1,6],
+    programs:[3,4]
+  });
+
+  const Playlist4 = new Playlist({
+    playlistID:4,
+    name:"Golden Age",
+    songs:[3,4,5,2],
+    programs:[5,4]});
+
+    await Playlist1.save();
+    await Playlist2.save();
+    await Playlist3.save();
+    await Playlist4.save();
+
+    const LyricSchema = new mongoose.Schema({
+        lyrics:[],
+        songID:Number
+    });
+
+    const Lyric = mongoose.model('Lyric',LyricSchema);
+    
+    const Lyric1 = new Lyric({
+        lyrics:['If there was a day that was near','I would be there too','Hold my memories in a sphere','Like I loved you'],
+        songID:1
+    });
+
+    const Lyric2 = new Lyric({
+        lyrics:['I eat think therefore I am','A tender soul','With chicken for wings'],
+        songID:2
+    });
+
+    const Lyric3 = new Lyric({
+        lyrics:[
+            'I love my deepest memories','The other heart of my brain','does not know them at all'
+        ],
+        songID:3
+    });
+
+    const Lyric4 = new Lyric({
+        lyrics:['I was watching youuuu','And you left me alone','Take me by the hand'],
+        songID:4
+    });
+
+    const Lyric5 = new Lyric({
+        lyrics:['Confess the lyrics of your heart','Do not lie to the angels','We watch in shadows'],
+        songID:5
+    });
+
+    const Lyric6 = new Lyric({
+        lyrics:['You can stand under my umbrella','Ella, ella, ella eh ey'],
+        songID:6
+    });
+
+    await Lyric1.save();
+    await Lyric2.save();
+    await Lyric3.save();
+    await Lyric4.save();
+    await Lyric5.save();
+    await Lyric6.save();
+
+    const LangaugeSchema = new mongoose.Schema({
+        languageID:Number,
+        language:String
+    });
+    const Language = mongoose.model('Language',LanguageSchema);
+
+    const Language1 = new Language({
+        langaugeID:1,
+        language:'English'
+    });
+
+    const Language2 = new Language({
+        langaugeID:2,
+        language:'French'
+    });
+
+    const Language3 = new Language({
+        langaugeID:3,
+        language:'Spanish'
+    });
+
+    const Language4 = new Language({
+        langaugeID:4,
+        language:'Mandarin'
+    });
+
+    const Language5 = new Language({
+        langaugeID:5,
+        language:'Korean'
+    });
+
+    const Language6 = new Language({
+        langaugeID:6,
+        language:'Arabic'
+    });
+
+    const Language7 = new Language({
+        langaugeID:7,
+        language:'Tamil'
+    });
+
+    const Language8 = new Language({
+        langaugeID:8,
+        language:'Telegu'
+    });
+
+    await Language1.save();
+    await Language2.save();
+    await Language3.save();
+    await Language4.save();
+    await Language5.save();
+    await Language6.save();
+    await Language7.save();
+    await Language8.save();
+
+    const UserSchema = new mongoose.Schema({
+        userID:Number,
+        username:String,
+        password:String,
+        location:String,
+        djPreference:[
+            {djName:String,id:String,checked:Boolean}
+        ],
+        languagePreference:[
+            {languageName:String,id:String,checked:Boolean}
+        ],
+        playlistPreference:[
+            {playlistName:String,id:String,checked:Boolean}
+        ],
+        genrePreference:[   
+            {genreName:String,id:String,checked:Boolean}
+        ]
+    });
+    const User = mongoose.model('User',UserSchema);
+
+    const user1 = new User({
+        userID:11,
+        username:'listener1',
+        password:'listener1P',
+        location:'VA',
+        djPreference:[
+            {djName:'A',id:"DJ_A",checked:True},
+            {djName:'B',id:"DJ_B",checked:False},
+            {djName:'C',id:"DJ_C",checked:False},
+            {djName:'D',id:"DJ_D",checked:True},
+            {djName:'E',id:"DJ_E",checked:True}
+        ],
+        languagePreference:[
+            {languageName:"English",id:"L1",checked:True},
+            {languageName:"French",id:"L2",checked:True},
+            {languageName:"Spanish",id:"L3",checked:True},
+            {languageName:"Mandarin",id:"L4",checked:True},
+            {languageName:"Korean",id:"L5",checked:False},
+            {languageName:"Arabic",id:"L6",checked:False},
+            {languageName:"Tamil",id:"L7",checked:False},
+            {languageName:"Telugu",id:"L8",checked:False}
+        ],
+        playlistPreference:[
+            {playlistName:"Jam Session",id:"P1",checked:False},
+            {playlistName:"Mixed Bag",id:"P2",checked:True},
+            {playlistName:"Tossed Plays",id:"P3",checked:False},
+            {playlistName:"Golden Age",id:"P4",checked:False}
+        ],
+        genrePreference:[   
+            {genreName:'indie',id:"g1",checked:True},
+            {genreName:"rock",id:"g2",checked:False},
+            {genreName:"pop",id:"g3",checked:True},
+            {genreName:"classical",id:"g4",checked:False},
+            {genreName:"country",id:"g5",checked:True},
+            {genreName:'gospel',id:"g6",checked:True},
+            {genreName:'dubstep',id:"g7",checked:False},
+            {genreName:'hip-hop',id:"g8",checked:False},
+            {genreName:"electronic",id:"g9",checked:True},
+            {genreName:"latin",id:"g10",checked:False}
+        ]
+    });
+
+    await user1.save();
+
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//Server Files
 
 // use res.render to load up an ejs view file
 app.use("/css", express.static(__dirname + "/css"));
