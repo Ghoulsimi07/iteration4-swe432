@@ -786,7 +786,7 @@ app.get('/listenerMain', function(req, res) {
       {artist:'Aurora',album:'Secret',song:'Runaway'}
     ];
 
-    
+
     var lyrics = [
         {lyric:'I\'m on the run with you, my sweet love'},
         {lyric:'There\'s nothing wrong contemplating God'},
@@ -951,6 +951,22 @@ app.get('/listener_timelines', function(req, res) {
 //timelines
 app.get('/listener_news', function(req, res) {
     res.render('pages/listener_news.ejs');
+});
+
+app.get('/listener_clear_session',function(req,res) {
+  req.session.destroy();
+  res.render('pages/listener_clear_session.ejs');
+  app.use(session({
+      secret:'MySecretCode',
+      saveUninitialized: true,
+      resave: true,
+      store: MongoStore.create({
+      mongoUrl: 'mongodb://127.0.0.1:27017/test',
+      autoRemove: 'interval',
+      autoRemoveInterval: 10 // In minutes. Default
+    })
+  }));
+
 });
 
 app.listen(8080);
