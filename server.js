@@ -582,42 +582,42 @@ async function main() {
     await Playlist4.save();
 
     const LyricSchema = new mongoose.Schema({
-        lyrics:[],
-        songID:Number
+        lyrics:[String],
+        songID:String
     });
 
     const Lyric = mongoose.model('Lyric',LyricSchema);
     
     const Lyric1 = new Lyric({
         lyrics:['If there was a day that was near','I would be there too','Hold my memories in a sphere','Like I loved you'],
-        songID:1
+        songID:"CH-SNG-ABC12CR5"
     });
 
     const Lyric2 = new Lyric({
         lyrics:['I eat think therefore I am','A tender soul','With chicken for wings'],
-        songID:2
+        songID:"CH-SNG-OYT98567"
     });
 
     const Lyric3 = new Lyric({
         lyrics:[
             'I love my deepest memories','The other heart of my brain','does not know them at all'
         ],
-        songID:3
+        songID:"CH-SNG-XSW2ZAQ1"
     });
 
     const Lyric4 = new Lyric({
         lyrics:['I was watching youuuu','And you left me alone','Take me by the hand'],
-        songID:4
+        songID:"CH-SNG-1QAZ2WSX"
     });
 
     const Lyric5 = new Lyric({
         lyrics:['Confess the lyrics of your heart','Do not lie to the angels','We watch in shadows'],
-        songID:5
+        songID:"CH-SNG-2WSX3EDC"
     });
 
     const Lyric6 = new Lyric({
         lyrics:['You can stand under my umbrella','Ella, ella, ella eh ey'],
-        songID:6
+        songID:"CH-SNG-3EDC4RFV"
     });
 
     await Lyric1.save();

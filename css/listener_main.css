@@ -143,7 +143,14 @@ p.lyricStanza {
 
 .event{
     font-size:small;
+    height:100%;
     
+}
+
+#MiddleEvent {
+    font-size:small;
+    height:100%;
+    width:30%;
 }
 
 p.event {

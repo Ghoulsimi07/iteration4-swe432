@@ -53,11 +53,7 @@
 
                     <div id="bottomPane">
                         <div id="controlPanel">
-                            <div id = "alternateButton">
-                                <button id="shareSession">
-                                    <img src="../../assets/icons/share.svg" alt="share icon" id = "share">
-                                </button>
-                            </div>
+                            <div></div>
 
                             <div id="playback">
                                 <div class="volumeControl">
@@ -85,13 +81,9 @@
                                     </button>
                                 </div>
                             </div>
+                            <div></div>
                             
-                            <div id="playlistToggle">
-                                <button id = "playlistToggleButton">
-                                    <!-- TODO: icon here -->
-                                    <img src="../../assets/icons/playlist.svg" alt="playlist icon" id = "playlistHideIcon">
-                                </button>
-                            </div>
+                            
                         </div>
                     </div>
                 </section>
@@ -200,7 +192,7 @@
                 <% }); %>
                 <!-- E3 -->
                 <% pastPlaylist3.forEach(function(pastPlaylist3) { %>
-                <div class="nextEvent">
+                <div class="event" id="MiddleEvent">
                     <div id="nextDJname">
                         <p>Currently Playing</p>
                    </div>
